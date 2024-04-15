@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home: MainVendorScreen(),
+      home: LoginScreen(),
       initialBinding: BindingsBuilder((){
         Get.put<CategoryController>(CategoryController());
         Get.put<BannerController>(BannerController());

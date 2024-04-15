@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     StoreScreen(),
     CarScreen(),
     //SearchScreen(),
-    AScreen()
+    AccountScreen()
   ];
   Widget build(BuildContext context) {
     return Scaffold(
