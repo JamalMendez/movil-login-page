@@ -19,9 +19,9 @@ class _CategoryItemState extends State<CategoryItem> {
         children: [
           GridView.builder(
             shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: _categoryController.categories.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 mainAxisSpacing: 4,
                 crossAxisSpacing: 8,

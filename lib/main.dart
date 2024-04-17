@@ -3,16 +3,18 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_page/Vendors/views/vendor_screens/main_vendor_screen.dart';
+import 'package:login_page/provider/product_provider.dart';
 import 'package:login_page/views/buyers/authorization/login_screen.dart';
+import 'package:provider/provider.dart';
 
-import 'Vendors/views/vendor_screens/main_vendor_screen.dart';
 import 'controllers/banner_controller.dart';
 import 'controllers/category_controller.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Platform.isAndroid ? await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: const FirebaseOptions(
         apiKey: "AIzaSyBYsNxA7PIAsAcBajHIDRsUzTNyLuUR09k",
         appId: "1:298702164343:android:1e24a85b8424171c879172",
         messagingSenderId: "298702164343",
@@ -20,7 +22,14 @@ void main() async{
         storageBucket: "gs://multi-sotore-app-v2.appspot.com"
     )
   ) : await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context){
+          return ProductProvider();
+        }),
+      ],
+      child: const MyApp()
+  ));
 }
 
 class MyApp extends StatelessWidget {

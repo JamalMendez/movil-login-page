@@ -3,27 +3,27 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
-  AccountScreen({super.key});
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
 
     CollectionReference users = FirebaseFirestore.instance.collection('vendors');
-    FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-    print("aqui hay algo: " + _firebaseAuth.currentUser.toString());
+    print("aqui hay algo: ${firebaseAuth.currentUser}");
 
     return FutureBuilder<DocumentSnapshot>(
-      future: users.doc("7dcQvdXAhsZVkOVqmfv0ObFLpZm1").get(),
+      future: users.doc(firebaseAuth.currentUser!.uid).get(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
 
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
+          return const Text("Document does not exist");
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
@@ -31,7 +31,7 @@ class AccountScreen extends StatelessWidget {
           return Text("Full Name: ${data['full_name']} ${data['last_name']}");
         }
 
-        return Text("loading");
+        return const Text("loading");
       },
     );
   }

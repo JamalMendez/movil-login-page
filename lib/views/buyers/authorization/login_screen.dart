@@ -20,9 +20,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool _isObscure = true;
 
-  GlobalKey<FormState>  _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState>  _formKey = GlobalKey<FormState>();
 
-  AuthController _authController = AuthController();
+  final AuthController _authController = AuthController();
 
   signInUser() async{
 
@@ -37,9 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
       if(response == 'success'){
         Future.delayed(Duration.zero, (){
           Navigator.pushReplacement(localContext, MaterialPageRoute(builder: (context){
-            return MainScreen();
+            return const MainScreen();
           },));
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account Created')));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account Created')));
         }).whenComplete((){
           setState(() {
             _formKey.currentState!.reset();
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'Login to your Account',
                     style: GoogleFonts.lato(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             fontSize: 23.0,
                             color: Color(0xff050957),
                             fontWeight: FontWeight.bold)),
@@ -84,12 +84,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "to explore the world exclusive",
                     style: GoogleFonts.lato(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold,
                     )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Image.asset(
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Color(0XFF0D12FF),
                       ),
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     obscureText: _isObscure,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.lock,
                         color: Color(0XFF0D12FF),
                       ),
@@ -152,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             _isObscure = !_isObscure;
                           });
                         },
-                          child: Icon(Icons.visibility)
+                          child: const Icon(Icons.visibility)
                       ),
                       labelText: 'Password',
                       hintText: 'your password',
@@ -164,13 +164,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   GestureDetector(
                     onTap: (){
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                        return MainScreen();
+                        return const MainScreen();
                       },));
                       //signInUser();
                     },
@@ -178,14 +178,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: double.infinity,
                       height: 70,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
+                          gradient: const LinearGradient(colors: [
                             Color(0xFF262fde),
                             Color(0xff050957),
                           ]),
                           borderRadius: BorderRadius.circular(10.0)),
                       child: Center(
                         child: _isLoading
-                        ? CircularProgressIndicator(
+                        ? const CircularProgressIndicator(
                           color: Colors.white,
                         )
                         : Text(
@@ -198,28 +198,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Need an Account'),
-                      SizedBox(
+                      const Text('Need an Account'),
+                      const SizedBox(
                         width: 10,
                       ),
                       InkWell(
                         child: Text(
                           'Register here!',
                           style: GoogleFonts.roboto(
-                            color: Color(0xff050957),
+                            color: const Color(0xff050957),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return RegisterScreen();
+                            return const RegisterScreen();
                           }));
                         },
                       ),

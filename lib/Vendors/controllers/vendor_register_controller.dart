@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_platform_interface/src/types/image_source.dart';
 
 class VendorController {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -13,11 +12,11 @@ class VendorController {
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   pickStoreImage(ImageSource source) async {
-    final ImagePicker _imagePicker = ImagePicker();
-    XFile? _file = await _imagePicker.pickImage(source: source);
+    final ImagePicker imagePicker = ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: source);
 
-    if(_file != null){
-      return await _file.readAsBytes();
+    if(file != null){
+      return await file.readAsBytes();
     }else{
       print("No image selected");
     }
@@ -80,7 +79,7 @@ class VendorController {
     String respuesta = "Something went wrong";
 
     try{
-      UserCredential _userCredential = await _firebaseAuth
+      UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
       respuesta = 'sucess';
     } on FirebaseAuthException catch (e) {

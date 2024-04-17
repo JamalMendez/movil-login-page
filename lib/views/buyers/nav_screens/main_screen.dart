@@ -18,14 +18,15 @@ class _MainScreenState extends State<MainScreen> {
   @override
 
   int _currentPage = 0;
-  List<Widget> _pages = [
-    HomeScreen(),
-    CategoryScreen(),
-    StoreScreen(),
-    CarScreen(),
+  final List<Widget> _pages = [
+    const HomeScreen(),
+    const CategoryScreen(),
+    const StoreScreen(),
+    const CarScreen(),
     //SearchScreen(),
-    AccountScreen()
+    const AccountScreen()
   ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
@@ -39,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
             _currentPage = value;
           });
           },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.home),
           label: 'Home'
           ),

@@ -22,17 +22,17 @@ Future<String> registerUser(
   String response = 'Holy Molly, something bad happen JAJAJAJ';
 
   try {
-    UserCredential _userCredential = await _firebaseAuth
+    UserCredential userCredential = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);
 
     //guarda el usuario en la base de datos
     await _firebaseFirestore.collection('buyers')
-        .doc(_userCredential.user!.uid)
+        .doc(userCredential.user!.uid)
         .set({
       'fullName': name,
       'profileImage': "",
       'email': email,
-      'uid': _userCredential.user!.uid,
+      'uid': userCredential.user!.uid,
       'pinCode': "",
       'locally': "",
       'city': "",
@@ -51,7 +51,7 @@ Future<String> LoginUser(String email, String password) async{
   String respuesta = "Something went wrong";
 
   try{
-    UserCredential _userCredential= await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    UserCredential userCredential= await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
     respuesta = 'sucess';
   } on FirebaseAuthException catch (e) {
     if(e.code == 'user-not-found'){

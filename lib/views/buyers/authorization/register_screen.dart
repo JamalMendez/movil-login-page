@@ -11,8 +11,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  AuthController _authCOntroller = AuthController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController _authCOntroller = AuthController();
 
   late String email;
   late String fullName;
@@ -27,9 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if(response == 'success'){
         Future.delayed(Duration.zero, (){
           Navigator.push(localContext, MaterialPageRoute(builder: (context){
-            return LoginScreen();
+            return const LoginScreen();
           },));
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Account Created')));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account Created')));
         });
       }
       else{
@@ -57,23 +57,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Text(
                       "Create an account",
                       style: GoogleFonts.lato(
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                               fontSize: 23.0, color: Color(0XFF0D12FE))),
                     ),
                     Text(
                       "to explore world's exclusive",
                       style: GoogleFonts.lato(
-                          textStyle: TextStyle(fontSize: 14.0)),
+                          textStyle: const TextStyle(fontSize: 14.0)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CircleAvatar(
                       radius: 80,
                       backgroundColor: Colors.grey.shade300,
-                      backgroundImage: AssetImage('assets/icons/user.png'),
+                      backgroundImage: const AssetImage('assets/icons/user.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     TextFormField(
@@ -81,6 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         if (value!.isEmpty) {
                           return 'Enter a valid email address';
                         }
+                        return null;
                       },
                       onChanged: (value){
                         email = value;
@@ -89,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.email,
                           ),
                           labelText: 'Your Email',
@@ -98,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(10.0))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -115,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.person,
                           ),
                           labelText: 'Your FullName',
@@ -124,7 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(10.0))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -141,15 +142,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
-                          prefixIcon: Icon(Icons.password),
-                          suffixIcon: Icon(Icons.visibility),
+                          prefixIcon: const Icon(Icons.password),
+                          suffixIcon: const Icon(Icons.visibility),
                           labelText: 'Your Password',
                           hintText: 'your Password',
                           border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(10.0))),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     InkWell(
@@ -160,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: double.infinity,
                         height: 70,
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 colors: [Color(0XFF262FDE), Color(0XFF050957)]),
                             borderRadius: BorderRadius.circular(10.0)),
                         child: Center(
@@ -174,14 +175,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Already have an account?"),
-                        SizedBox(
+                        const Text("Already have an account?"),
+                        const SizedBox(
                           width: 20,
                         ),
                         InkWell(
@@ -189,13 +190,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Text(
                             'Login now!',
                             style: GoogleFonts.roboto(
-                                color: Color(0XFF0D12FE),
+                                color: const Color(0XFF0D12FE),
                                 fontWeight: FontWeight.bold),
                           ),
                           onTap: () => {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return LoginScreen();
+                              return const LoginScreen();
                             }))
                           },
                         )

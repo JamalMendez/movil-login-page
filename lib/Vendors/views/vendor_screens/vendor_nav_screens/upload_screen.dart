@@ -14,7 +14,7 @@ class UploadScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(
                 child: Text("General"),
@@ -31,12 +31,12 @@ class UploadScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             GeneralTabScreen(),
+            ShippingTabScreen(),
             AtributesTabScreens(),
             ImagesTabScreen(),
-            ShippingTabScreen(),
           ],
         ),
       ),

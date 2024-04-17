@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class BannerController extends GetxController {
-  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   
   RxList<String> banners = <String>[].obs;
   @override
@@ -18,7 +18,7 @@ class BannerController extends GetxController {
         .listen((QuerySnapshot querySnapshot){
           banners.assignAll(
             querySnapshot.docs.map((doc){
-              print("banners son: " + doc.toString());
+              print("banners son: $doc");
               final data = doc.data() as Map<String, dynamic>;
               return data['image'].toString();
             }).toList(),

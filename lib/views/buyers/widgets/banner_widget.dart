@@ -50,7 +50,7 @@ class _BannerWidgetState extends State<BannerWidget> {
         padding: const EdgeInsets.all(10.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: Container(
+          child: SizedBox(
             height: 120,
             width: double.infinity,
             child: PageView.builder(
@@ -72,13 +72,9 @@ class _BannerWidgetState extends State<BannerWidget> {
                   placeholder: (context, url) =>
                       Shimmer(
                         // This is the ONLY required parameter
-                        child: Container(
-                          color: Colors.deepPurple,
-                        ),
-                        // This is the default value
-                        duration: Duration(seconds: 3),
+                        duration: const Duration(seconds: 3),
                         // This is NOT the default value. Default value: Duration(seconds: 0)
-                        interval: Duration(seconds: 5),
+                        interval: const Duration(seconds: 5),
                         // This is the default value
                         color: Colors.white,
                         // This is the default value
@@ -86,9 +82,13 @@ class _BannerWidgetState extends State<BannerWidget> {
                         // This is the default value
                         enabled: true,
                         // This is the default value
-                        direction: ShimmerDirection.fromLTRB(),
+                        direction: const ShimmerDirection.fromLTRB(),
+                        // This is the ONLY required parameter
+                        child: Container(
+                          color: Colors.deepPurple,
+                        ),
                       ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 );
               },
             ),

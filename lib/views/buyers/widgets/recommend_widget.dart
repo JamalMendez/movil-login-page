@@ -17,7 +17,7 @@ class _RecommendWidgetState extends State<RecommendWidget> {
     return Obx(() {
     return Column(
       children: [
-        Row(
+        const Row(
            mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Recommended for you",
@@ -33,9 +33,9 @@ class _RecommendWidgetState extends State<RecommendWidget> {
         ),
         GridView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: _categoryController.categories.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 4,
             crossAxisSpacing: 2,
@@ -59,10 +59,10 @@ class _RecommendWidgetState extends State<RecommendWidget> {
                     padding: const EdgeInsets.all(4.0),
                     child: Text(_categoryController.categories[index].categoryName, style: TextStyle(fontWeight: FontWeight.bold,color: Colors.blue.shade800,fontSize: 20)),
                   ),
-                  Text("4.5"),
-                  Text("500+ bought in past month"),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Text("4.5"),
+                  const Text("500+ bought in past month"),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Column(
                       children: [
                         Text("Hogar"),

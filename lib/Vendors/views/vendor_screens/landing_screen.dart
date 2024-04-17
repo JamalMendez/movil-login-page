@@ -8,16 +8,16 @@ import 'package:login_page/Vendors/views/vendor_screens/main_vendor_screen.dart'
 
 
 class LandingScreen extends StatefulWidget {
-  LandingScreen({super.key});
+  const LandingScreen({super.key});
 
   @override
   State<LandingScreen> createState() => _LandingScreenState();
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  CollectionReference _vendorsStream = FirebaseFirestore.instance.collection('vendors');
+  final CollectionReference _vendorsStream = FirebaseFirestore.instance.collection('vendors');
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +25,21 @@ class _LandingScreenState extends State<LandingScreen> {
       stream: _vendorsStream.doc(_auth.currentUser!.uid).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
         //Revisamos si el vendedor completo el usuario de registro
         if(!snapshot.data!.exists){
-          return VendorRegistrationScreen();
+          return const VendorRegistrationScreen();
         }
         VendorModel vendorModel = VendorModel.fromJson(
           snapshot.data!.data() as Map<String, dynamic>
         );
         if(vendorModel.approve == true){
-          return MainVendorScreen();
+          return const MainVendorScreen();
         }
         //Si llega a este punto, implica que no esta aprovado aun y mostramos un landing
         return Center(
@@ -52,16 +52,16 @@ class _LandingScreenState extends State<LandingScreen> {
                 width: 90,
                 fit: BoxFit.cover,),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Text(vendorModel.businessName.toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold
               ),
               ),
-              Text("Your profile was sent for Approval"),
+              const Text("Your profile was sent for Approval"),
             ],
           ),
         );

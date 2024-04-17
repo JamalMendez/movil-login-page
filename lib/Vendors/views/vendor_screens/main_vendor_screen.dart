@@ -9,22 +9,22 @@ import 'package:login_page/Vendors/views/vendor_screens/vendor_nav_screens/uploa
 
 class MainVendorScreen extends StatefulWidget {
 
-  MainVendorScreen({super.key});
+  const MainVendorScreen({super.key});
 
   @override
   State<MainVendorScreen> createState() => _MainVendorScreenState();
 }
 
 class _MainVendorScreenState extends State<MainVendorScreen> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   int _currentPage = 0;
-  List<Widget> _pages = [
-    EarningScreen(),
-    EditScreen(),
-    OrderScreen(),
+  final List<Widget> _pages = [
+    const EarningScreen(),
+    const EditScreen(),
+    const OrderScreen(),
     //SearchScreen(),
-    UploadScreen(),
-    LogoutScreen(),
+    const UploadScreen(),
+    const LogoutScreen(),
   ];
 
   @override
@@ -38,10 +38,10 @@ class _MainVendorScreenState extends State<MainVendorScreen> {
         onTap: (value){
           setState(() {
             _currentPage = value;
-            print("current page: " + value.toString());
+            print("current page: $value");
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(CupertinoIcons.home),
               label: 'Earnings'
           ),

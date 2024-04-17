@@ -6,17 +6,17 @@ class RecommendedProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('products').snapshots();
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance.collection('products').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
-      stream: _usersStream,
+      stream: usersStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
 
         return ListView.builder(

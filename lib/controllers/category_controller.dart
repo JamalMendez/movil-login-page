@@ -4,7 +4,7 @@ import 'package:login_page/models/category_model.dart';
 
 
 class CategoryController extends GetxController{
-  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   //Lista reactiva RxList
   RxList<CategoryModel> categories = <CategoryModel>[].obs;
   //obs cuando se realize un cambio en la categoria se lo va a notificar a la lista y se actualizara sola

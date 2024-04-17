@@ -20,7 +20,7 @@ class VendorAuthScreen extends StatelessWidget {
           ],
         );
       }
-      return LandingScreen();
+      return const LandingScreen();
       //return VendorRegistrationScreen();
         }
         );

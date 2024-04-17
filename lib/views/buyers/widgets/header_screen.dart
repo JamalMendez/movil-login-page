@@ -23,7 +23,7 @@ class Header_Screen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'enter here',
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
@@ -42,11 +42,11 @@ class Header_Screen extends StatelessWidget {
           child: Material(
             type: MaterialType.transparency,
             child: InkWell(
-              overlayColor: MaterialStateProperty.all(Color(0xFF0C7F7F)),
+              overlayColor: MaterialStateProperty.all(const Color(0xFF0C7F7F)),
               child: Ink(
                   height: 30,
                   width: 30,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/icons/message.png'),
                     ),

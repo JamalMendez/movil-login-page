@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:country_state_city_picker/country_state_city_picker.dart';
@@ -11,7 +10,7 @@ import 'package:login_page/Vendors/controllers/vendor_register_controller.dart';
 
 
 class VendorRegistrationScreen extends StatefulWidget {
-  VendorRegistrationScreen({super.key});
+  const VendorRegistrationScreen({super.key});
 
   @override
   State<VendorRegistrationScreen> createState() =>
@@ -26,7 +25,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
   late String countryValue;
   late String cityValue;
   Uint8List? image;
-  List<String> _taxOptions = ['YES', 'NO'];
+  final List<String> _taxOptions = ['YES', 'NO'];
   String taxTypeSelection = "NO";
 
   late String businessName;
@@ -100,7 +99,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                                   image!,
                                   fit: BoxFit.cover,
                                 )
-                                    : Icon(CupertinoIcons.photo),
+                                    : const Icon(CupertinoIcons.photo),
                                 onPressed: () {
                                   selectGalleryImage();
                                 }),
@@ -121,7 +120,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(labelText: 'Business Name'),
+                      decoration: const InputDecoration(labelText: 'Business Name'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Field';
@@ -135,7 +134,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(labelText: 'Email Address'),
+                      decoration: const InputDecoration(labelText: 'Email Address'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Field';
@@ -149,7 +148,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                     ),
                     TextFormField(
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(labelText: 'Phone Number'),
+                      decoration: const InputDecoration(labelText: 'Phone Number'),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please Enter Field';
@@ -181,7 +180,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Tax Registered?',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
@@ -190,10 +189,10 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                         //   width: 20,
                         // ),
                         Flexible(
-                          child: Container(
+                          child: SizedBox(
                             width: 200,
                             child: DropdownButtonFormField(
-                              hint: Text("Please Select"),
+                              hint: const Text("Please Select"),
                               items: _taxOptions.map((value) {
                                 return DropdownMenuItem(
                                   //alignment: Alignment.bottomRight,
@@ -218,12 +217,12 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                     ),
                     if (taxTypeSelection == "YES")
                       TextFormField(
-                        decoration: InputDecoration(labelText: "RNC"),
+                        decoration: const InputDecoration(labelText: "RNC"),
                         onChanged: (value) {
                           rncNumber = value;
                         },
                       ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
@@ -236,7 +235,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                         decoration: BoxDecoration(
                             color: Colors.green.shade900,
                             borderRadius: BorderRadius.circular(10.0)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'SAVE',
                             style: TextStyle(
@@ -251,7 +250,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                       onPressed: () async {
                         await FirebaseAuth.instance.signOut();
                       },
-                      child: Text('Logout'),
+                      child: const Text('Logout'),
                     )
                   ],
                 ),

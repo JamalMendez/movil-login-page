@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:login_page/provider/product_provider.dart';
+import 'package:provider/provider.dart';
 
 class GeneralTabScreen extends StatefulWidget {
   const GeneralTabScreen({super.key});
@@ -10,15 +12,15 @@ class GeneralTabScreen extends StatefulWidget {
 
 class _GeneralTabScreenState extends State<GeneralTabScreen> {
 
-  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
-  List<String> _categoryList = [];
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final List<String> _categoryList = [];
   _getCategories() async{
     return _firebaseFirestore.collection('categories').get().then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((element) {
+      for (var element in querySnapshot.docs) {
         setState(() {
           _categoryList.add(element['categoryName']);
         });
-      });
+      }
     });
   }
 
@@ -31,27 +33,37 @@ class _GeneralTabScreenState extends State<GeneralTabScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ProductProvider _productProvider = Provider.of<ProductProvider>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
           children: [
             TextFormField(
-            decoration: InputDecoration(
-            labelText: 'Enter Product Name'
-            ),
+            decoration: const InputDecoration(
+              labelText: 'Enter Product Name'
+              ),
+              onChanged: (value){
+                _productProvider.getFormData(productName: value);
+              },
             ),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: 'Enter Product Price'
               ),
+              onChanged: (value){
+                _productProvider.getFormData(productPrice: double.parse(value));
+              },
             ),
             TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: 'Enter Product Quantity'
               ),
+              onChanged: (value){
+                _productProvider.getFormData(productQuantity: int.parse(value));
+              },
             ),
             DropdownButtonFormField(
-              hint: Text('Select Category'),
+              hint: const Text('Select Category'),
               items: _categoryList.map((categories) {
                 return DropdownMenuItem(
                   value: categories,
@@ -60,7 +72,7 @@ class _GeneralTabScreenState extends State<GeneralTabScreen> {
               }).toList(),
               onChanged: (value){
                 setState(() {
-
+                  _productProvider.getFormData(category: value);
                 });
               },
 
@@ -74,12 +86,27 @@ class _GeneralTabScreenState extends State<GeneralTabScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              onChanged: (value){
+                setState(() {
+                  _productProvider.getFormData(description: value);
+                });
+              },
             ),
             Row(
               children: [
                 TextButton(onPressed: (){
-                  showDatePicker(context: context, firstDate: DateTime.now(), initialDate: DateTime.now(), lastDate: DateTime(5000));
-                }, child: Text(
+                  showDatePicker(
+                    context: context,
+                    firstDate: DateTime.now(),
+                    initialDate: DateTime.now(),
+                    lastDate: DateTime(5000), 
+                    onDatePickerModeChange: (value) {
+                      setState(() {
+                        _productProvider.getFormData(scheduleDate: DateTime.parse(value.toString()));
+                      });
+                    }
+                  );
+                }, child: const Text(
                     'Schedule',
                   style: TextStyle(
                     color: Colors.blue,
