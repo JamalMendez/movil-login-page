@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/views/buyers/nav_screens/account_screen.dart';
-import 'package:login_page/views/buyers/nav_screens/car_screen.dart';
+import 'package:login_page/views/buyers/nav_screens/cart_screen.dart';
 import 'package:login_page/views/buyers/nav_screens/category_screen.dart';
 import 'package:login_page/views/buyers/nav_screens/home_screen.dart';
 import 'package:login_page/views/buyers/nav_screens/store_screen.dart';
@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     const CategoryScreen(),
     const StoreScreen(),
-    const CarScreen(),
+    const CartScreen(),
     //SearchScreen(),
     const AccountScreen()
   ];
